@@ -1,17 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Naruto Uzumaki</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de Posicionamento Relativo</title>
+    <style>
+        div.blue { 
+            width: 100px; 
+            height: 200px; 
+            background-color: blue; 
+            position: relative;
+            left: 0px;
+            top: 0px;
+        }
+        div.yellow { 
+            width: 100px; 
+            height: 150px; 
+            background-color: yellow; 
+            position: relative;
+            left: 100px;
+            top: -200px;
+        }
+        div.red { 
+            width: 100px; 
+            height: 150px; 
+            background-color: red; 
+            position: relative;
+            left: 200px;
+            top: -350px;
+        }
+        div.green { 
+            width: 200px; 
+            height: 50px; 
+            background-color: green; 
+            position: relative;
+            left: 100px;
+            top: -350px;
+        }
+        </style>
+        
 </head>
 <body>
-<div class="container">
-    <div class="card">
-        <h1>Naruto Uzumaki</h1>
-        <p>Naruto é uma série de anime japonesa baseada no mangá de mesmo nome de Masashi Kishimoto. A história acompanha Naruto Uzumaki, um jovem ninja que busca reconhecimento de seus pares e sonha em se tornar o Hokage, o líder de sua aldeia. Assim como o mangá, a série de anime é dividida em duas partes separadas: a primeira série mantém o título do mangá original e se passa nos anos pré-adolescentes de Naruto.</p>
-    </div>
-</div>
+    <div class="blue"></div>
+    <div class="yellow"></div>
+    <div class="red"></div>
+    <div class="green"></div>
 </body>
 </html>
-
