@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo Jokenpô</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #placar {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        #historicoJogadas {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 300px;
+            margin: auto;
+            height: 300px;
+            overflow-y: scroll;
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jokenpô</h1>
+    <div id="placar">
+        Pontuação: <span id="pontuacao">0</span>
+    </div>
+    <div id="historicoJogadas"></div>
+    <button onclick="novaRodada()">Jogar</button>
+
+    <script>
+        let pontuacao = 0;
+        let historico = document.getElementById("historicoJogadas");
+        let placar = document.getElementById("pontuacao");
+
+        function novaRodada() {
+            const escolhaUsuario = parseInt(prompt("Escolha sua jogada: 1 - Papel, 2 - Pedra, 3 - Tesoura"));
+            if (![1, 2, 3].includes(escolhaUsuario)) {
+                historico.innerHTML += "Jogada inválida! O jogo acabou.<br>";
+                return;
+            }
+
+            const escolhaComputador = Math.floor(Math.random() * 3) + 1;
+            const resultado = verificaVencedor(escolhaUsuario, escolhaComputador);
+
+            historico.innerHTML += `Você escolheu: ${nomeJogada(escolhaUsuario)}<br>`;
+            historico.innerHTML += `O computador jogou: ${nomeJogada(escolhaComputador)}<br>`;
+
+            switch (resultado) {
+                case 0:
+                    historico.innerHTML += "A rodada empatou!<br>";
+                    break;
+                case 1:
+                    historico.innerHTML += "Você ganhou!<br>";
+                    pontuacao++;
+                    placar.textContent = pontuacao;
+                    break;
+                case -1:
+                    historico.innerHTML += "Você perdeu! A sua pontuação foi de " + pontuacao + "<br>";
+                    placar.textContent = 0;
+                    pontuacao = 0; 
+                    break;
+            }
+            historico.innerHTML += "<hr>"; 
+            historico.scrollTop = historico.scrollHeight; 
+        }
+
+        function verificaVencedor(usuario, computador) {
+            if (usuario === computador) {
+                return 0;
+            } else if ((usuario === 1 && computador === 2) || (usuario === 2 && computador === 3) || (usuario === 3 && computador === 1)) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+
+        function nomeJogada(numero) {
+            if (numero === 1) {
+                return "Papel";
+            } else if (numero === 2) {
+                return "Pedra";
+            } else {
+                return "Tesoura";
+            }
+        }
+    </script>
+</body>
+</html>

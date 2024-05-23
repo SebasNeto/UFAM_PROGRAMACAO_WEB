@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste ConjuntoInteiro</title>
+</head>
+<body>
+    <h1>Teste da Classe ConjuntoInteiro</h1>
+
+    <script>
+        class ConjuntoInteiro {
+            constructor(valorMaximo = 100) {
+                this.valorMaximo = valorMaximo;
+                this.conjunto = new Array(valorMaximo + 1).fill(false);
+            }
+
+            inserir(valor) {
+                if (valor >= 0 && valor <= this.valorMaximo) {
+                    this.conjunto[valor] = true;
+                }
+            }
+
+            excluir(valor) {
+                if (valor >= 0 && valor <= this.valorMaximo) {
+                    this.conjunto[valor] = false;
+                }
+            }
+
+            uniao(outroConjunto) {
+                const novoConjunto = new ConjuntoInteiro(Math.max(this.valorMaximo, outroConjunto.valorMaximo));
+                for (let i = 0; i <= novoConjunto.valorMaximo; i++) {
+                    novoConjunto.conjunto[i] = this.conjunto[i] || (i <= outroConjunto.valorMaximo && outroConjunto.conjunto[i]);
+                }
+                return novoConjunto;
+            }
+
+            intersecao(outroConjunto) {
+                const novoConjunto = new ConjuntoInteiro(Math.min(this.valorMaximo, outroConjunto.valorMaximo));
+                for (let i = 0; i <= novoConjunto.valorMaximo; i++) {
+                    novoConjunto.conjunto[i] = this.conjunto[i] && (i <= outroConjunto.valorMaximo && outroConjunto.conjunto[i]);
+                }
+                return novoConjunto;
+            }
+
+            diferenca(outroConjunto) {
+                const novoConjunto = new ConjuntoInteiro(this.valorMaximo);
+                for (let i = 0; i <= this.valorMaximo; i++) {
+                    novoConjunto.conjunto[i] = this.conjunto[i] && !(i <= outroConjunto.valorMaximo && outroConjunto.conjunto[i]);
+                }
+                return novoConjunto;
+            }
+
+            paraString() {
+                const elementos = [];
+                for (let i = 0; i <= this.valorMaximo; i++) {
+                    if (this.conjunto[i]) {
+                        elementos.push(i);
+                    }
+                }
+                return `{ ${elementos.join(", ")} }`;
+            }
+        }
+
+        const conjunto1 = new ConjuntoInteiro(10);
+        conjunto1.inserir(1);
+        conjunto1.inserir(3);
+        conjunto1.inserir(5);
+
+        const conjunto2 = new ConjuntoInteiro(10);
+        conjunto2.inserir(3);
+        conjunto2.inserir(4);
+        conjunto2.inserir(5);
+
+        console.log("Conjunto 1:", conjunto1.paraString());
+        console.log("Conjunto 2:", conjunto2.paraString());
+
+        const conjuntoUniao = conjunto1.uniao(conjunto2);
+        console.log("União de Conjunto 1 e Conjunto 2:", conjuntoUniao.paraString());
+
+        const conjuntoIntersecao = conjunto1.intersecao(conjunto2);
+        console.log("Interseção de Conjunto 1 e Conjunto 2:", conjuntoIntersecao.paraString());
+
+        const conjuntoDiferenca = conjunto1.diferenca(conjunto2);
+        console.log("Diferença de Conjunto 1 de Conjunto 2:", conjuntoDiferenca.paraString());
+    </script>
+</body>
+</html>

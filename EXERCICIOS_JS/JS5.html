@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráfico de Barras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        .barra {
+            display: inline-block;
+            margin: 5px;
+            background-color: red;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercício JS5</h1>
+    <div>
+        <label for="altura">Informe a altura das barras: </label>
+        <input type="text" id="altura" placeholder="100, 150, 120, 80, 40">
+    </div>
+    <div>
+        <label for="largura">Informe a largura das barras: </label>
+        <input type="number" id="largura" placeholder="30">
+    </div>
+    <button onclick="desenharGrafico()">Desenhar o gráfico</button>
+    <div id="grafico"></div>
+
+    <script>
+        function desenharGrafico() {
+            const alturas = document.getElementById('altura').value.split(',').map(Number);
+            const largura = document.getElementById('largura').value;
+            const container = document.getElementById('grafico');
+            container.innerHTML = '';
+
+            alturas.forEach(altura => {
+                const barra = document.createElement('div');
+                barra.style.width = `${largura}px`;
+                barra.style.height = `${altura}px`;
+                barra.classList.add('barra');
+                barra.textContent = altura;
+                container.appendChild(barra);
+            });
+        }
+    </script>
+</body>
+</html>
