@@ -8,7 +8,18 @@
   </head>
   <body>
     <div id="score">00000</div>
-    <div id = "game-over" style="display: none;"> Fim de jogo. Você bateu a Snake.</div>
+    <div id = "game-over" style="display: none;"> Fim de jogo. Você bateu a Snake.
+      Clique em S para reiniciar o jogo.
+    </div>
+    <audio id = "musica-fundo" loop>
+      <source src="C:\\Users\\Cliente\\Downloads\\UFAM_PROGRAMACAO_WEB\\Tp1_Jogo_Snake\\sons\\musica-fundo.mp3" type="audio/mpeg">
+    </audio>
+    <audio id = "food-snake">
+      <source src="C:\\Users\\Cliente\\Downloads\\UFAM_PROGRAMACAO_WEB\\Tp1_Jogo_Snake\\sons\\food-snake.mp3" type="audio/mpeg">
+    </audio>
+    <audio id = "over-game">
+      <source src="C:\\Users\\Cliente\\Downloads\\UFAM_PROGRAMACAO_WEB\\Tp1_Jogo_Snake\\sons\game-over.mp3" type="audio/mpeg">
+    </audio>
     <script src="js/game.js"></script>
   </body>
 </html>

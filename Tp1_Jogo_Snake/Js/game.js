@@ -10,6 +10,7 @@
       if (board) {
           document.body.removeChild(board.element);
       }
+      document.getElementById('musica-fundo').play();
       board = new Board(SIZE);
       snake = new Snake([[4, 4], [4, 5], [4, 6]]);
       score = 0;
@@ -20,6 +21,7 @@
           clearInterval(intervaloId);
       }
       intervaloId = setInterval(run, 1000 / FPS); // Inicia o loop do jogo chamando a função run a cada / FPS
+      document.getElementById('musica-fundo').play(); //inicia som de fundo
   }
 
   // atualiza o score no HTML
@@ -57,8 +59,10 @@
       descanso = !descanso;
       if (descanso) {
           clearInterval(intervaloId);
+          document.getElementById('musica-fundo').pause(); //pausa som de fundo
       } else {
           intervaloId = setInterval(run, 1000 / FPS);
+          document.getElementById('musica-fundo').play(); //retoma som de fundo
       }
   }
 
@@ -114,6 +118,7 @@
           if (newHead[0] == comecomeSnake[0] && newHead[1] == comecomeSnake[1]) {
               score += comecomeSnake[2];
               atualisaScore();
+              document.getElementById('food-snake').play();
               generatecomecomeSnake();
           } else {
               const caldaVelha = this.body.shift();
@@ -158,7 +163,10 @@
       snake.clearSnake();
       clearInterval(intervaloId);
       intervaloId = null;
+      document.getElementById('musica-fundo').pause();
+      document.getElementById('over-game').play();
       document.getElementById('game-over').style.display = 'block'; // Mostra a mensagem de Game Over
+      document.getElementById('over-game').stop();
   }
 
   // posição na direção atual
