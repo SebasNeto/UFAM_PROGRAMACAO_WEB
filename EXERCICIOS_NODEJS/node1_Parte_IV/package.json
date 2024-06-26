@@ -1,0 +1,11 @@
+{
+  
+  "scripts": {
+    "start": "npx nodemon node1_parte_IV.js",
+    "start:prod": "node node1_parte_IV.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.4"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  
+  "scripts": {
+    "start": "NODE_ENV=development nodemon node1_parte_V.js",
+    "start:prod": "NODE_ENV=production node node1_parte_V.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.4"
+  }
+}
