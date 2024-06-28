@@ -10,7 +10,7 @@
       if (board) {
           document.body.removeChild(board.element);
       }
-      document.getElementById('musica-fundo').play();
+      //document.getElementById('musica-fundo').play();
       board = new Board(SIZE);
       snake = new Snake([[4, 4], [4, 5], [4, 6]]);
       score = 0;
@@ -184,6 +184,11 @@
           intervaloId = setInterval(run, 1000 / FPS);
       }
   }
+
+  document.body.addEventListener('click', function startGame(){
+    document.body.removeEventListener('click', startGame);
+    init();
+  });
 
   //inicia o jogo.
   init();
