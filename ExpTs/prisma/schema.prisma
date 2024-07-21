@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Departamento {
+  id            Int          @id @default(autoincrement())
+  name          String
+  sigla         String
+  funcionarios  Funcionario[]
+}
+
+model Funcionario {
+  id             Int          @id @default(autoincrement())
+  name           String
+  departamentoId Int
+  departamento   Departamento @relation(fields: [departamentoId], references: [id])
+}

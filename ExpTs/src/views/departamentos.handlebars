@@ -1,0 +1,17 @@
+{{!< main}}
+
+<h1>Curso</h1>
+<ul>
+  {{#each departamentos}}
+    <li>{{name}} ({{sigla}})</li>
+  {{/each}}
+</ul>
+
+<h2>Criar Curso</h2>
+<form action="/departamentos/create" method="POST">
+  <label for="name">Nome:</label>
+  <input type="text" id="name" name="name" required>
+  <label for="sigla">Sigla:</label>
+  <input type="text" id="sigla" name="sigla" required>
+  <button type="submit">Criar</button>
+</form>

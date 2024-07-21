@@ -10,6 +10,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3333;
 
+app.use(express.urlencoded({ extended: true }));
+
 // formato completo
 app.use(logger('completo'));
 
@@ -18,7 +20,7 @@ app.engine('handlebars', engine({helpers}));
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
 
-//app.use('/', router);
+app.use('/', router);
 app.use('/', main);
 
 app.get('/', (req: Request, res: Response) => {
