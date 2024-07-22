@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { getHb1, getHb2, getHb3, getHb4 } from '../controllers/main';
-import departamentoRoutes from './departamentoRoutes';
-import funcionarioRoutes from './funcionarioRoutes';
+import { createCookie } from '../controllers/cookieController';
 
 const router = Router();
 
@@ -10,7 +9,6 @@ router.get('/hb2', getHb2);
 router.get('/hb3', getHb3);
 router.get('/hb4', getHb4);
 
-router.use('/departamentos', departamentoRoutes);
-router.use('/funcionarios', funcionarioRoutes);
+router.get('/create-cookie', createCookie);
 
 export default router;

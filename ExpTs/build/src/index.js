@@ -10,18 +10,25 @@ const routes_1 = __importDefault(require("./routes"));
 const express_handlebars_1 = require("express-handlebars");
 const helpers_1 = __importDefault(require("./helpers"));
 const main_1 = __importDefault(require("./routes/main"));
+const majorRoutes_1 = __importDefault(require("./routes/majorRoutes"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3333;
-app.use(express_1.default.urlencoded({ extended: true }));
+app.use((0, cookie_parser_1.default)());
 // formato completo
 app.use((0, logger_1.default)('completo'));
+app.use(express_1.default.urlencoded({ extended: false }));
+app.use(express_1.default.json());
 //app.engine('handlebars', engine());
 app.engine('handlebars', (0, express_handlebars_1.engine)({ helpers: helpers_1.default }));
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
 app.use('/', routes_1.default);
 app.use('/', main_1.default);
+app.use('/majors', majorRoutes_1.default);
+app.use('/auth', authRoutes_1.default);
 app.get('/', (req, res) => {
     res.send('Hello world!');
 });
