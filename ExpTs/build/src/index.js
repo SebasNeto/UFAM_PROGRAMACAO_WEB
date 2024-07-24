@@ -23,15 +23,22 @@ app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());
 //app.engine('handlebars', engine());
 app.engine('handlebars', (0, express_handlebars_1.engine)({ helpers: helpers_1.default }));
+app.engine('handlebars', (0, express_handlebars_1.engine)({ defaultLayout: 'main', layoutsDir: './src/views/layouts' }));
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
 app.use('/', routes_1.default);
 app.use('/', main_1.default);
 app.use('/majors', majorRoutes_1.default);
 app.use('/auth', authRoutes_1.default);
+// app.get('/', (req: Request, res: Response) => {
+//   res.send('Hello world!');
+// });
 app.get('/', (req, res) => {
-    res.send('Hello world!');
+    res.redirect('/auth/login');
 });
+// router.get('/', (req, res) => {
+//   res.render('main');
+// });
 app.listen(PORT, () => {
     console.log(`Express app iniciada na porta ${PORT}.`);
 });

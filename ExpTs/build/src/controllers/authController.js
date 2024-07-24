@@ -17,7 +17,7 @@ const client_1 = require("@prisma/client");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const prisma = new client_1.PrismaClient();
-const secret = 'your_jwt_secret'; // Substitua por uma chave secreta segura
+const secret = 'your_jwt_secret';
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, password, majorId } = req.body;
     const hashedPassword = yield bcrypt_1.default.hash(password, 10);
@@ -33,6 +33,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.render('signup', { message: 'Conta criada com sucesso!' });
     }
     catch (error) {
+        console.error(error);
         res.render('signup', { message: 'Erro ao criar conta. Tente novamente.' });
     }
 });
@@ -48,7 +49,9 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(401).render('login', { message: 'Credenciais inválidas' });
     }
     const token = jsonwebtoken_1.default.sign({ userId: user.id }, secret, { expiresIn: '1h' });
-    res.render('login', { message: 'Login realizado com sucesso!' });
+    //res.render('login', { message: 'Login realizado com sucesso!' });
+    res.cookie('token', token, { httpOnly: true });
+    res.redirect('/majors');
 });
 exports.login = login;
 const logout = (req, res) => {

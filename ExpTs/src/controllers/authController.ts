@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
-const secret = 'your_jwt_secret'; // Substitua por uma chave secreta segura
+const secret = 'your_jwt_secret'; 
 
 export const signup = async (req: Request, res: Response) => {
     const { name, email, password, majorId } = req.body;
@@ -21,6 +21,7 @@ export const signup = async (req: Request, res: Response) => {
       });
       res.render('signup', { message: 'Conta criada com sucesso!' });
     } catch (error) {
+      console.error(error);
       res.render('signup', { message: 'Erro ao criar conta. Tente novamente.' });
     }
 };
@@ -41,7 +42,9 @@ export const login = async (req: Request, res: Response) => {
   
     const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1h' });
     
-    res.render('login', { message: 'Login realizado com sucesso!' });
+    //res.render('login', { message: 'Login realizado com sucesso!' });
+    res.cookie('token', token, { httpOnly: true});
+    res.redirect('/majors');
 };
 
 export const logout = (req: Request, res: Response) => {
