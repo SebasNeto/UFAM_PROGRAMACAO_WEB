@@ -10,7 +10,7 @@ ROUNDS="10"
 cd $DIR
 npm install
 
-# Criar e configurar o arquivo .env
+# Criar e configurar os arquivo .env
 echo "PORT=$PORT" > .env
 echo "ROUNDS=$ROUNDS" >> .env
 echo "DATABASE_URL=mysql://$USER:$PASS@localhost:3306/$DB" >> .env
