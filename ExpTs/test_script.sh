@@ -2,8 +2,8 @@
 
 DIR="ExpTS"
 DB="bd_sistema"
-USER="loja"
-PASS="senha123"
+USER="root"
+PASS="sebastiaoufamicomp"
 PORT="3333"
 ROUNDS="10"
 
