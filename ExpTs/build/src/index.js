@@ -36,9 +36,6 @@ app.use('/auth', authRoutes_1.default);
 app.get('/', (req, res) => {
     res.redirect('/auth/login');
 });
-// router.get('/', (req, res) => {
-//   res.render('main');
-// });
 app.listen(PORT, () => {
     console.log(`Express app iniciada na porta ${PORT}.`);
 });
